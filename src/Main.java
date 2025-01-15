@@ -1,22 +1,27 @@
 public class Main {
     public static void main(String[] args) {
-        PlayerDecorator userScientist = new ScientistDecorator(new Player("Player A", "Game1"));
-        PlayerDecorator botLogistician = new LogisticianDecorator(new BasicBot("Bot 1", "Game1"));
-        PlayerDecorator userPlayer = new DefaultPlayerDecorator(new Player("Player B", "Game1"));
+        BotPlayer botScientist = new BotPlayer("botScientist", "testGame", new ScientistCheckStrategy());
+        RealPlayer playerScientist = new RealPlayer("realPlayer", "testGame", new ScientistCheckStrategy());
+        RealPlayer defaultPlayer = new RealPlayer("defaultPlayer", "testGame", new DefaultCheckStrategy());
+        RealPlayer playerLogistician = new RealPlayer("playerLogistician", "testGame", new LogisticianCheckStrategy());
 
-        userScientist.canMoveTo("City A");
-        botLogistician.canMoveTo("City B");
-        userPlayer.canMoveTo("City A");
+        botScientist.canTreatDisease();
+        botScientist.canMoveTo();
 
-        if(userScientist.player instanceof  BasicBot){
-            System.out.println("User scientist does bot action:");
-            ((BasicBot) userScientist.player).botAction();
+        playerScientist.canTreatDisease();
+        playerScientist.canMoveTo();
+
+        defaultPlayer.canTreatDisease();
+        defaultPlayer.canMoveTo();
+
+        playerLogistician.canTreatDisease();
+        playerLogistician.canMoveTo();
+
+        if (botScientist.isScientist()){
+            System.out.println("Scientist actions can happen here");
         }
-        if(botLogistician.player instanceof  BasicBot){
-            System.out.println("Bot scientist does bot action:");
-            ((BasicBot) botLogistician.player).botAction();
+        if (playerScientist.isScientist()){
+            System.out.println("Scientist actions can happen here as well");
         }
-
-        // Analog käme man an den Usernamen des echten Spielers dran
     }
 }
