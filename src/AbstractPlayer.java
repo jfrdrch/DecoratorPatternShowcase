@@ -21,9 +21,10 @@ public abstract class AbstractPlayer {
         return false;
     }
 
+    // And so on for the other check methods
+
     public boolean isScientist() {
         return strategy instanceof ScientistCheckStrategy;
     }
-
-    // And so on
+    
 }
