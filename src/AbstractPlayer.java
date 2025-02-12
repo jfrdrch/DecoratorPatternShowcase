@@ -5,6 +5,7 @@ public abstract class AbstractPlayer {
     public AbstractPlayer(String game, CheckStrategy strategy) {
         this.game = game;
         this.strategy = strategy;
+        strategy.setPlayer(this);
     }
 
     public boolean canMoveTo(){
